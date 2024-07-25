@@ -1,0 +1,71 @@
+$nomention
+$nomention
+$allowMention
+$onlyBotPerms[manageroles;admin;$ephemeral ❎ I don't have `Admin` perms]
+$onlyPerms[manageroles;$ephemeral You don't have `Manage Roles` perms]
+$onlyIf[$message!=; >_
+```Syntax: ,massrole members role
+Example: ,massrole @7cary premium
+```]
+$endif
+
+$if[$toLowercase[$message[1]]==add]
+$var[i;1]
+$textSplit[$message;<@]
+$var[user;$eval[$replaceText[$replaceText[$cropText[$repeatMessage[10;$sum[1e38;0]];$getTextSplitLength;];1;0];0;%{DOL}%if[%{DOL}%userExists[%{DOL}%mentioned[%{DOL}%var[i\]\]\]\]%{DOL}%mentioned[%{DOL}%var[i\]\]%{DOL}%endif %{DOL}%var[i\;%{DOL}%sum[%{DOL}%var[i\]\;1\]\]]]]
+$onlyIf[$var[user]!=;$ephemeral ❎ Mention a user(s) to give their role]
+$textSplit[$message;<@&]
+$var[role;$trimSpace[$if[$roleExists[$mentionedRoles[1]]]$mentionedRoles[1]$endif ]]
+$onlyIf[$var[role]!=;$ephemeral ❎ Mention a role to give user(s) role]
+$onlyIf[$rolePosition[$var[role]]>=$rolePosition[$highestRole[$authorID]];$ephemeral You can't give role this user, because your highest role position at **$rolePosition[$highestRole[$authorID]]**.
+while the role position at **$rolePosition[$var[role]]**]
+$onlyIf[$rolePosition[$var[role]]>=$rolePosition[$highestRole[$botID]];$ephemeral I can't give role this user, because my highest role position at **$rolePosition[$highestRole[$botID]]**.
+while the role position at **$rolePosition[$var[role]]**]
+$allowUserMentions[]
+$allowRoleMentions[$var[role]]
+$textSplit[$var[user]; ]
+$var[n;1]
+$var[id;$sendMessage[Wait...;yes]]
+$replyIn[1s]
+$var[s;0]$var[f;0]
+$async[a]
+$eval[$replaceText[$cropText[$replaceText[$repeatMessage[10;$sum[1e38;0]];1;0];$getTextSplitLength;];0;%{DOL}%allowRoleMentions[%{DOL}%var[role\]\] %{DOL}%replyIn[1s\] %{DOL}%try %{DOL}%editMessage[%{DOL}%channelID\;%{DOL}%var[id\]\;Added <@&%{DOL}%var[role\]> to <@%{DOL}%splitText[%{DOL}%var[n\]\]>\]%{DOL}%roleGrant[%{DOL}%splitText[%{DOL}%var[n\]\]\;+%{DOL}%var[role\]\]%{DOL}%var[s\;%{DOL}%sum[%{DOL}%var[s\]\;1\]\]%{DOL}%catch %{DOL}%editMesage[%{DOL}%channelID\;%{DOL}%var[id\]\;I can't give role to <@%{DOL}%splitText[%{DOL}%var[n\]\]>\]%{DOL}%var[f\;%{DOL}%sum[%{DOL}%var[f\]\;1\]\]%{DOL}%endtry %{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$endasync
+$await[a]
+$replyIn[2s]
+$reply[$channelID;$var[id]]
+✅: $var[s] User(s) given
+❎: $var[f] User(s) given't
+$elseif[$toLowercase[$message[1]]==remove]
+$var[i;1]
+$textSplit[$message;<@]
+$var[user;$eval[$replaceText[$replaceText[$cropText[$repeatMessage[10;$sum[1e38;0]];$getTextSplitLength;];1;0];0;%{DOL}%if[%{DOL}%userExists[%{DOL}%mentioned[%{DOL}%var[i\]\]\]\]%{DOL}%mentioned[%{DOL}%var[i\]\]%{DOL}%endif %{DOL}%var[i\;%{DOL}%sum[%{DOL}%var[i\]\;1\]\]]]]
+$onlyIf[$var[user]!=;$ephemeral ❎ Mention a user(s) to give their role]
+$textSplit[$message;<@&]
+$var[role;$trimSpace[$if[$roleExists[$mentionedRoles[1]]]$mentionedRoles[1]$endif ]]
+$onlyIf[$var[role]!=;$ephemeral ❎ Mention a role to give user(s) role]
+$onlyIf[$rolePosition[$var[role]]>=$rolePosition[$highestRole[$authorID]];$ephemeral You can't remove role for this user, because your highest role position at **$rolePosition[$highestRole[$authorID]]**.
+while the role position at **$rolePosition[$var[role]]**]
+$onlyIf[$rolePosition[$var[role]]>=$rolePosition[$highestRole[$botID]];$ephemeral I can't remove role for this user, because my highest role position at **$rolePosition[$highestRole[$botID]]**.
+while the role position at **$rolePosition[$var[role]]**]
+$allowUserMentions[]
+$allowRoleMentions[$var[role]]
+$textSplit[$var[user]; ]
+$var[n;1]
+$var[id;$sendMessage[Wait...;yes]]
+$replyIn[1s]
+$var[s;0]$var[f;0]
+$async[a]
+$eval[$replaceText[$cropText[$replaceText[$repeatMessage[10;$sum[1e38;0]];1;0];$getTextSplitLength;];0;%{DOL}%allowRoleMentions[%{DOL}%var[role\]\]%{DOL}%replyIn[1s\] %{DOL}%try %{DOL}%editMessage[%{DOL}%channelID\;%{DOL}%var[id\]\;Removed <@&%{DOL}%var[role\]> to <@%{DOL}%splitText[%{DOL}%var[n\]\]>\]%{DOL}%roleGrant[%{DOL}%splitText[%{DOL}%var[n\]\]\;-%{DOL}%var[role\]\]%{DOL}%var[s\;%{DOL}%sum[%{DOL}%var[s\]\;1\]\]%{DOL}%catch %{DOL}%editMesage[%{DOL}%channelID\;%{DOL}%var[id\]\;I can't remove this role to <@%{DOL}%splitText[%{DOL}%var[n\]\]>\]%{DOL}%var[f\;%{DOL}%sum[%{DOL}%var[f\]\;1\]\]%{DOL}%endtry %{DOL}%var[n\;%{DOL}%sum[%{DOL}%var[n\]\;1\]\]]]
+$endasync
+$await[a]
+$replyIn[2s]
+$reply[$channelID;$var[id]]
+✅: $var[s] User(s) removed
+❎: $var[f] User(s) can't be remove
+$else
+$ephemeral Type `add` or `remove` to run this massrole!
+$endif
+$c[Made By protopro#0]
+$c[Gimme a credit]
+$c[Don't repost this shit]
