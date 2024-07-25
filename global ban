@@ -1,0 +1,30 @@
+VARIABLES-----
+GBAN VALUE:NO
+it legit no if u misunderstood
+
+$nomention
+$if[$message==]
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[>_]
+$description[Global bans mentioned user from guild```Syntax: ,globalban <mentioned>
+Example: ,globalban stealth 
+```]
+
+$else
+$suppressErrors[Have to mention a user]
+$onlyForIDs[1153489276059791360;Only Developer can add Global Bans!]
+$setVar[GBAN;YES;$mentioned[1]]
+$channelSendMessage[$channelID;> 🚨 Added Global Ban to **$username[$mentioned[1]]#$discriminator[$mentioned[1]]**.]
+$dm[$mentioned[1]]
+$title[You will Global Banned!]
+$description[`Reason:` $noMentionMessage
+
+With Global Ban you can't use the bot]
+$footer[You will GBanned by $username#$discriminator[$authorID]]
+$color[ff0000]
+
+
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+$endif
