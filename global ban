@@ -1,3 +1,5 @@
+MUST HAVE $onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+ IN EVERY SINGLE COMMAND
 VARIABLES-----
 GBAN VALUE:NO
 it legit no if u misunderstood
