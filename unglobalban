@@ -1,0 +1,27 @@
+$nomention
+$nomention
+$if[$message==]
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[>_]
+$description[unglobal bans mentioned user from guild```Syntax: ,unglobalban <mentioned>
+Example: ,unglobalban user 
+```]
+$else
+
+
+$nomention 
+$onlyForIDs[(YOUR ID);Only Developer can remove Global Bans!]
+
+$setVar[GBAN;NO;$mentioned[1]]
+$channelSendMessage[$channelID;> 🚨 Removed Global Ban from **$username[$mentioned[1]]#$discriminator[$mentioned[1]]**.]
+$dm[$mentioned[1]]
+$title[You will Ungbanned!]
+$description[`Reason:` $noMentionMessage
+
+Now you can use the bot! We hope you will use it wisely]
+$footer[You will ungbanned by $username#$discriminator[$authorID]]
+$color[00ff00]
+
+
+$endif
