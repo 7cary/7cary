@@ -1,0 +1,16 @@
+$nomention
+$onlyPerms[manageroles;⚠️ You need "manage roles" to use this command!]
+$onlyBotPerms[manageroles;manageserver;⚠️ I need "manage roles" and "manage server"]
+$onlyIf[$message!=;Usage: `! or prefix removeAllUserRoles <@user>` **( Take all roles of user )**]
+$var[user;$findUser[$message;no]]
+$onlyIf[$var[user]!=;⚠️ Mention a user to take all they're roles]
+$onlyIf[$userRoles[$var[user]]!=;⚠️ That user doesn't have any role!]
+$onlyIf[$rolePosition[$highestRole[$var[user]]]>=$rolePosition[$highestRole[$authorID]];⚠️ I can't take all user roles, because your highest role position at: **$rolePosition[$highestRole[$authorID]]**
+While user highest role position at **$rolePosition[$highestRole[$var[user]]]**]
+$onlyIf[$rolePosition[$highestRole[$var[user]]]>=$rolePosition[$highestRole[$authorID]];⚠️ I can't take all user roles, because my highest role position at: **$rolePosition[$highestRole[$authorID]]**
+While user highest role position at **$rolePosition[$highestRole[$var[user]]]**]
+$var[id;$sendMessage[Wait....;yes]]
+$var[s;0]$var[f;0]
+$eval[%{DOL}%try %{DOL}%roleGrant[%{DOL}%var[user\]\;-%{DOL}%findRole[%{DOL}%url[decode\;$replaceText[$url[encode;$userRoles[$var[user]]];%0A;\]\]\]%{DOL}%var[s\;%{DOL}%sum[%{DOL}%var[s\]\;1\]\]%{DOL}%catch %{DOL}%var[f\;%{DOL}%sum[%{DOL}%var[f\]\;1\]\]%{DOL}%endtry %{DOL}%try %{DOL}%roleGrant[%{DOL}%var[user\]\;-%{DOL}%findRole[%{DOL}%url[decode\;]\]\]\]%{DOL}%var[s\;%{DOL}%sum[%{DOL}%var[s\]\;1\]\]%{DOL}%endtry]
+$editMessage[$channelID;$var[id];✅ **$var[s]** removed
+❎ **$var[f]** can't be removed]
