@@ -1,0 +1,22 @@
+$nomention
+$nomention
+$onlyAdmin[❌ You are not worthy for this command]
+
+
+
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+$deletecommand
+$clear[$message]
+
+$color[00ffdf]
+$footerIcon[$authorAvatar]
+$footer[clearing $username]
+$thumbnail[$authorAvatar]
+$deleteIn[1s]
+$title[Clear]
+$clear[$message[1] ; $mentioned[1]]
+$description[Clear $message[1]
+message !]
