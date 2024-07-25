@@ -1,0 +1,25 @@
+$nomention
+$nomention
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+
+$if[$message==]
+$botTyping
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[**Command: ban**]
+$description[bans the mentioned user from guild
+```Syntax: ,ban (username)
+Example: ,ban stealth```]
+$else
+$ban
+👍
+$endif
+$endif
+
+
+
+
+ 
