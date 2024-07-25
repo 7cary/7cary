@@ -1,0 +1,32 @@
+$nomention
+$thumbnail[$serverIcon]
+$addField[Server Name;$serverName[$guildID];yes]
+
+$addField[Server Owner;<@$serverOwner>;yes]
+
+$addField[Server Region;$serverRegion;yes]
+
+$addField[Verification Level;$serverVerificationLvl;yes]
+
+$addField[Highest Role;<@&$highestRole>;yes]
+
+$addField[Lowest Role;<@&$lowestRole>;yes]
+
+$addField[Members Count;$membersCount;yes]
+
+$addField[Channels Count;$channelCount;yes]
+
+$addField[Roles Count;$roleCount;yes]
+
+$addField[Emotes Count;$emoteCount;yes]
+
+$addField[Members Online;$membersCount[online];yes]
+
+$addField[DND;$membersCount[dnd];yes]
+
+$addField[Idle;$membersCount[idle];yes]
+$footer[Requested By $username]
+$addTimestamp
+$color[$random[111;99999]]
+$footerIcon[$authorAvatar]
+
