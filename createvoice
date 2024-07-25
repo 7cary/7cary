@@ -1,0 +1,28 @@
+$nomention
+$nomention
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+
+$if[$message==]
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[**Command: createvoice**]
+$description[Creates a voice channel
+to add to a category must use categoryId
+```Syntax: ,createvoice <channel>
+Example: ,createvoice voice <Category id>
+```]
+
+
+
+$else
+$suppressErrors[No category id found]
+$onlyPerms[managechannels;❌ You do not have permission to manage channels.]
+
+$createChannel[$message[1];voice;$message[2]]
+✅ Voice channel named "$message[1]" has been created in the specified category.
+$onlyIf[$message[1]!=;❌ Please specify a name for the voice channel.]
+$onlyIf[$message[2]!=;❌ Please specify the category ID.]
+$endif
