@@ -1,0 +1,28 @@
+$nomention
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+
+$if[$message==]
+$botTyping
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[**Command: kick**]
+$description[kick the mentioned user from guild
+```Syntax: ,kick (username)
+Example: ,kick stealth```]
+
+$else
+$argsCheck[>1;> **ERROR! Mention someone to kick. **]
+$nomention $kickMention
+$title[**Member kicked**]
+$color[00FF00]
+$footer[Moderator ID: $authorID]
+$description[
+**<:check:1259495255649026149>Sucessfully Kicked : <@$mentioned[<]>
+Kicked by: $authorID
+Reason: $noMentionMessage**
+]
+$deleteIn[30m]
+$endif
