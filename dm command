@@ -1,0 +1,18 @@
+$nomention
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+
+$if[$message==]
+$botTyping
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[>_]
+$description[dms  on the given  user
+```Syntax: ,dm (username)
+Example: ,dm stealth```]
+$else 
+$dm[$mentioned[<]]
+$noMentionMessage
+$endif
