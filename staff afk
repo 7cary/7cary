@@ -1,0 +1,15 @@
+$nomention
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+$if[$toLowercase[$message]==online]
+$nomention
+$onlyPerms[kick;You dont have the perms]
+$useChannel[1257141660228522046]
+$description[<:78910yellowenable:1258462175635439677> The staff/mod $username#$discriminator[] is now online, ` ID $authorID `]
+$color[00FF00]
+$endif
+$if[$toLowercase[$message]==offline]
+$onlyPerms[kick;You dont have the perms]
+$nomention
+$useChannel[1257141660228522046]
+$description[<:78926yellowdisable:1258462275765796965> The staff/mod $username#$discriminator[] is now offline, ` ID $authorID `]
+$color[FF0000]
