@@ -1,0 +1,18 @@
+$nomention
+$if[$message==]
+$authorIcon[$userAvatar[$botID]]
+$author[$username[$botID]]
+$title[>_]
+$description[Unmuted mentioned from guild```Syntax: ,unmute <mentioned>
+Example: ,unmute @user
+```]
+
+
+
+$else
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+$untimeout[$mentioned[1]]
+**Succesfully unmuted $mentioned[1]**
+$endif
