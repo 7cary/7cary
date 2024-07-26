@@ -1,0 +1,16 @@
+$nomention
+
+$onlyIf[$getVar[GBAN;$authorID]==NO;Due to Global Ban, you can't use the bot!]
+
+
+$nomention
+$onlyPerms[managechannels;You cannot use this command ❌] 
+$if[$message==] 
+$modifyChannelPerms[$mentionedChannels[1;yes];/readmessages;$guildID]
+<#$mentionedChannels[1;yes]> has been  unlocked for `@everyone`.
+$else
+$modifyChannelPerms[$mentionedChannels[1;yes];/readmessages;$mentionedRoles[1]]
+<#$mentionedChannels[1;yes]> has been view unlocked for `@$roleName[$mentionedRoles[1]]`.
+$argsCheck[>1;please at least provide a role. !vul <channel(optional) <Role(optional)]
+$endif 
+$suppressErrors[An Error occurred! Please use a valid format:!vul <channel(optional) <Role(optional)] 
